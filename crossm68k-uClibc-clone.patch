@@ -1,0 +1,16 @@
+diff -urN uClibc-0.9.28.orig/libc/sysdeps/linux/m68k/clone.S uClibc-0.9.28/libc/sysdeps/linux/m68k/clone.S
+--- uClibc-0.9.28.orig/libc/sysdeps/linux/m68k/clone.S	2005-08-18 00:49:42.000000000 +0200
++++ uClibc-0.9.28/libc/sysdeps/linux/m68k/clone.S	2006-02-04 00:12:54.000000000 +0100
+@@ -76,10 +76,11 @@
+ 	trap	#0
+ 	/*jsr    exit*/
+ 
++/*
+ #if defined(__HAVE_ELF__)
+ 	.weak clone
+ 	clone = __clone
+ #else
+ 	.set clone,__clone
+ #endif
+-
++*/
