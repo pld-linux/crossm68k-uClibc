@@ -20,7 +20,7 @@ Source0:	http://www.uclibc.org/downloads/uClibc-%{version}.tar.bz2
 # Source0-md5:	1ada58d919a82561061e4741fb6abd29
 Source1:	http://www.uclibc.org/downloads/toolchain/linux-libc-headers-%{llh_version}.tar.bz2
 # Source1-md5:	997d36627baf6825c712431dee4d79d3
-Source2:	crossm68k-uClibc.config
+Source2:	%{name}.config
 Patch0:		%{name}-clone.patch
 URL:		http://www.uclibc.org/
 %{?!with_bootstrap:BuildRequires:	crossm68k-gcc}
@@ -63,7 +63,7 @@ done
 	local MULTILIB_SUBDIR=$1
 	local PIC_CODE=$2
 	local COMPILE_FLAGS=$3
-	
+
 	cat .config	| grep -v "HAVE_SHARED"		> .config.tmp
 	cat .config.tmp | grep -v "BUILD_UCLIBC_LDSO"	> .config
 
@@ -76,7 +76,7 @@ done
 
         %{__make} clean						|| exit 1
         %{__make} all	ARCH_CFLAGS="$COMPILE_FLAGS" </dev/null	|| exit 1
-	
+
 	install -d		$RPM_BUILD_ROOT%{arch}/lib/$MULTILIB_SUBDIR
 	install lib/*.[ao]	$RPM_BUILD_ROOT%{arch}/lib/$MULTILIB_SUBDIR
 	%{target}-strip --strip-debug -R.comment -R.note	\
@@ -84,7 +84,7 @@ done
     }
 
     rm -rf $RPM_BUILD_ROOT
-    
+
     _build	"m5200"				0	"-Wa,--bitwise-or -D__linux__=1 -m5200 -Wa,-m5200"
     _build	"m5200/msep-data"		1	"-Wa,--bitwise-or -D__linux__=1 -m5200 -Wa,-m5200 -msep-data"
 
@@ -93,6 +93,7 @@ done
 %endif
 
 %install
+rm -rf $RPM_BUILD_ROOT
 install -d		$RPM_BUILD_ROOT%{arch}/include
 cp -RL include/*	$RPM_BUILD_ROOT%{arch}/include
 ln -s include		$RPM_BUILD_ROOT%{arch}/sys-include
