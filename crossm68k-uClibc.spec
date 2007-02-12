@@ -9,7 +9,7 @@
 %define		llh_version	2.4.31
 
 Summary:	C library optimized for size (m68k version)
-Summary(pl.UTF-8):   Biblioteka C zoptymalizowana na rozmiar (dla m68k)
+Summary(pl.UTF-8):	Biblioteka C zoptymalizowana na rozmiar (dla m68k)
 Name:		crossm68k-uClibc
 Version:	0.9.28
 Release:	1
