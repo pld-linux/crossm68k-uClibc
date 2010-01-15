@@ -22,7 +22,7 @@ Source3:	%{name}-kernel.config
 Patch0:		%{name}-clone.patch
 Patch1:		%{name}-uCLinux.patch
 URL:		http://www.uclibc.org/
-%{?!with_bootstrap:BuildRequires:	crossm68k-gcc}
+%{!?with_bootstrap:BuildRequires:	crossm68k-gcc}
 BuildRequires:	sed >= 4.0
 BuildRequires:	which
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
